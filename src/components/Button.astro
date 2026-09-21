@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'light' | 'outline' | 'text';
+  class?: string;
+  dialog?: string;
+  external?: boolean;
+  arrow?: boolean;
+  icon?: 'arrow' | 'arrow-up-right';
+}
+const { href, variant = 'primary', class: className, dialog, external = false, arrow = true, icon = 'arrow' } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+<Tag href={href} type={href ? undefined : 'button'} class:list={['button', `button-${variant}`, className]} data-open-dialog={dialog} aria-haspopup={dialog ? 'dialog' : undefined} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
+  <span><slot /></span>{arrow && <Icon name={icon} />}
+</Tag>

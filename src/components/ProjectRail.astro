@@ -1,0 +1,11 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import Icon from './Icon.astro';
+import type { Project } from '../data/projects';
+interface Props { id: string; label: string; description: string; projects: Project[]; }
+const { id, label, description, projects } = Astro.props;
+---
+<section class="project-group" id={id} aria-labelledby={`${id}-title`} data-rail-group>
+  <div class="rail-heading"><div class="rail-label"><h3 id={`${id}-title`}>{label}</h3></div><div class="rail-controls"><button class="icon-button previous" type="button" aria-label={`Projetos anteriores de ${label}`} aria-controls={`${id}-rail`} data-direction="-1"><Icon /></button><button class="icon-button" type="button" aria-label={`Próximos projetos de ${label}`} aria-controls={`${id}-rail`} data-direction="1"><Icon /></button></div></div>
+  <div class="project-rail-wrap"><ul class="project-rail" id={`${id}-rail`} aria-label={`Referências de ${label}`} tabindex="0">{projects.map(project => <ProjectCard project={project} />)}</ul><div class="project-pagination" aria-label={`Avanço dos projetos de ${label}`}>{projects.map((project, index) => <button type="button" class="project-pagination-bullet" data-rail-page={index} aria-label={`Ir para ${project.name}`} aria-current={index === 0 ? 'true' : undefined}></button>)}</div></div>
+</section>

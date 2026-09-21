@@ -1,0 +1,14 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import SocialLinks from './SocialLinks.astro';
+import { navigation, whatsappUrl } from '../data/site';
+---
+<dialog id="mobile-menu" class="mobile-menu" aria-label="Menu de navegação">
+  <div class="mobile-menu-top"><Brand light /><form method="dialog"><button class="icon-button" aria-label="Fechar menu"><Icon name="close" /></button></form></div>
+  <nav class="mobile-navigation" aria-label="Navegação mobile">
+    {navigation.map(item => <a href={item.href}>{item.label}<Icon /></a>)}
+  </nav>
+  <div class="mobile-menu-bottom"><Button href={whatsappUrl} external variant="light" icon="arrow-up-right" class="header-cta mobile-menu-cta">Iniciar um projeto</Button><SocialLinks class="mobile-social" /><p>Arquitetura e interiores<br />Atibaia, São Paulo e região</p></div>
+</dialog>

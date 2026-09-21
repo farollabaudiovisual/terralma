@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+---
+<dialog id="project-preview" class="preview-dialog" aria-labelledby="preview-title" aria-describedby="preview-description">
+  <form method="dialog" class="dialog-close"><button class="icon-button" aria-label="Fechar prévia"><Icon name="close" /></button></form>
+  <img id="preview-image" alt="" width="1000" height="750" />
+  <div class="preview-copy"><p class="eyebrow" id="preview-category"></p><h2 id="preview-title"></h2><p id="preview-description">Projeto da Terralma. A galeria completa e a sequência espacial serão apresentadas na página individual do projeto.</p><Button href="#contato" variant="text">Vamos conversar</Button></div>
+</dialog>
+<dialog id="contact-demo" class="contact-dialog" aria-labelledby="contact-demo-title">
+  <form method="dialog" class="dialog-close"><button class="icon-button" aria-label="Fechar contato"><Icon name="close" /></button></form>
+  <p class="eyebrow">Primeiro, uma conversa</p><h2 id="contact-demo-title">Seu projeto começa aqui.</h2><p>Conte sobre o lugar que você imagina e fale diretamente com a Terralma pelo WhatsApp.</p><form method="dialog"><button class="button button-primary">Continuar explorando<Icon /></button></form>
+</dialog>

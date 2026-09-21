@@ -1,0 +1,20 @@
+---
+import Brand from './Brand.astro';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import MobileMenu from './MobileMenu.astro';
+import SocialLinks from './SocialLinks.astro';
+import { navigation } from '../data/site';
+---
+<header class="site-header">
+  <div class="container header-content">
+    <Brand light />
+    <nav class="desktop-navigation" aria-label="Navegação principal">
+      {navigation.map(item => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <SocialLinks class="header-social" />
+    <Button href="#contato" variant="outline" icon="arrow-up-right" class="header-cta">Iniciar um projeto</Button>
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="mobile-menu" aria-expanded="false" data-open-dialog="mobile-menu"><span>Menu</span><Icon name="menu" /></button>
+  </div>
+</header>
+<MobileMenu />

@@ -1,0 +1,75 @@
+@layer projects {
+  .projects-page { --projects-transition-space: clamp(3rem, 4vw, 4rem); background: var(--color-paper); }
+  .projects-hero { position: relative; isolation: isolate; padding-block: clamp(9rem, 15vw, 13rem) var(--projects-transition-space); background: var(--color-brand); color: var(--color-paper); }
+  .projects-hero::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: url('/images/photo-metal-texture-pattern.jpg') center / cover; opacity: .22; mix-blend-mode: soft-light; }
+  .projects-hero-content { display: grid; justify-items: start; }
+  .projects-hero .eyebrow { margin-block-end: 24px; }
+  .projects-hero h1 { max-inline-size: 18ch; color: var(--color-paper); font-size: clamp(3rem, 6.2vw, 6.25rem); line-height: 1.04; }
+  .projects-hero-content > p:not(.eyebrow) { max-inline-size: 58ch; margin-block-start: 32px; font-size: var(--text-lg); }
+  .projects-index { padding-block: var(--projects-transition-space) var(--section-space); }
+  .projects-index-heading { padding-block-end: 32px; border-block-end: 1px solid var(--color-line); }
+  .projects-index-heading .eyebrow { color: var(--color-brand); }
+  .projects-index-heading h2 { max-inline-size: 13ch; margin-block-start: 18px; color: var(--color-brand); font-size: var(--text-xl); }
+  .project-filters { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-block: 26px 48px; }
+  .project-filter { position: relative; min-block-size: 40px; padding: 4px 0; border: 0; background: transparent; color: var(--color-ink); font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; }
+  .project-filter::after { content: ''; position: absolute; inset-inline: 0; inset-block-end: 0; block-size: 1px; background: var(--color-brand); transform: scaleX(0); transform-origin: center; transition: transform var(--motion), opacity var(--motion); opacity: 0; }
+  .project-filter:hover, .project-filter.is-active { color: var(--color-brand); }
+  .project-filter.is-active::after { transform: scaleX(1); opacity: 1; }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(48px, 6vw, 96px) 24px; }
+  .project-tile { min-inline-size: 0; opacity: 1; transform: translateY(0); transition: opacity 220ms ease, transform 220ms ease; }
+  .project-tile.is-filtering { opacity: 0; transform: translateY(10px); }
+  .project-tile[hidden] { display: none; }
+  .project-tile-trigger { display: block; inline-size: 100%; padding: 0; border: 0; background: transparent; text-align: start; }
+  .project-tile-image { position: relative; display: block; overflow: hidden; border-radius: var(--radius); background: var(--color-line); }
+  .project-tile-image img { inline-size: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 450ms ease; }
+  .project-tile-trigger:hover img { transform: scale(1.025); }
+  .project-tile-open { position: absolute; inset-inline-end: 16px; inset-block-end: 16px; display: inline-flex; align-items: center; gap: 8px; min-block-size: 42px; padding: 8px 12px 8px 16px; border-radius: 999px; background: var(--color-paper); color: var(--color-brand); font-size: var(--text-xs); opacity: 0; transform: translateY(8px); transition: opacity var(--motion), transform var(--motion); }
+  .project-tile-open svg { inline-size: 18px; rotate: -35deg; }
+  .project-tile-trigger:hover .project-tile-open, .project-tile-trigger:focus-visible .project-tile-open { opacity: 1; transform: translateY(0); }
+  .project-tile-caption { display: grid; gap: 5px; padding-block-start: 16px; }
+  .project-tile-category { color: var(--color-brand); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.12em; }
+  .project-tile-name { color: var(--color-brand); font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.2; }
+  .projects-cta { background-color: var(--color-brand); background-image: linear-gradient(90deg, rgb(46 22 13 / 78%), rgb(78 34 19 / 58%) 65%, rgb(118 53 26 / 36%)), url('/images/projetos/camila-terralma-62.webp'); background-position: center, center 58%; background-size: cover; color: var(--color-paper); }
+  .projects-cta-content { display: grid; justify-items: start; max-inline-size: 760px; }
+  .projects-cta .eyebrow { margin-block-end: 24px; }
+  .projects-cta h2 { max-inline-size: 14ch; color: var(--color-paper); }
+  .projects-cta p:not(.eyebrow) { max-inline-size: 55ch; margin-block: 24px 32px; font-size: var(--text-lg); }
+  .projects-cta-content .header-cta { margin-inline-start: 0; border-color: var(--color-paper); color: var(--color-paper); }
+  .projects-cta-content .header-cta:hover { background: var(--color-paper); color: var(--color-brand); }
+  .project-gallery-dialog { inline-size: min(1180px, calc(100% - 32px)); max-inline-size: none; max-block-size: calc(100dvh - 32px); padding: 0; overflow: visible; color: var(--color-paper); background: transparent; opacity: 0; transform: scale(0.98); transition: opacity 280ms ease, transform 280ms ease; }
+  .project-gallery-dialog[open] { opacity: 1; transform: scale(1); }
+  .project-gallery-dialog::backdrop { background: rgb(43 26 18 / 84%); backdrop-filter: blur(10px); }
+  .gallery-close { position: fixed; inset-block-start: 16px; inset-inline-end: 16px; z-index: 2; }
+  .gallery-close .icon-button { border-color: var(--color-paper); color: var(--color-paper); background: transparent; }
+  .gallery-stage { display: grid; grid-template-columns: 46px minmax(0, 1fr) 46px; align-items: center; gap: 20px; min-block-size: min(86dvh, 900px); }
+  .gallery-figure { display: grid; justify-items: center; gap: 20px; min-inline-size: 0; margin: 0; }
+  .gallery-figure img { inline-size: auto; max-inline-size: 100%; max-block-size: 72dvh; object-fit: contain; border-radius: var(--radius); transition: opacity 220ms ease, transform 280ms ease; }
+  .gallery-figure img.is-changing { opacity: 0; transform: scale(0.98); }
+  .gallery-figure figcaption { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 6px 24px; inline-size: min(100%, 920px); }
+  #gallery-category { grid-column: 1 / -1; color: var(--color-paper); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.14em; }
+  #gallery-title { color: var(--color-paper); font-size: var(--text-xl); }
+  #gallery-counter { color: var(--color-paper); font-size: var(--text-sm); }
+  .gallery-nav { display: inline-grid; place-items: center; inline-size: 46px; block-size: 46px; padding: 0; border: 1px solid var(--color-paper); border-radius: 50%; background: transparent; color: var(--color-paper); }
+  .gallery-nav:hover { background: rgb(242 232 222 / 12%); }
+  .gallery-previous svg { rotate: 180deg; }
+  @media (max-width: 1023px) {
+    .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 639px) {
+    .projects-hero { padding-block: 8rem var(--projects-transition-space); }
+    .projects-hero h1 { max-inline-size: 12ch; font-size: clamp(2.8rem, 12vw, 4.2rem); }
+    .projects-hero-content > p:not(.eyebrow) { margin-block-start: 24px; font-size: var(--text-base); }
+    .project-filters { gap: 4px 20px; margin-block-end: 40px; }
+    .projects-grid { grid-template-columns: 1fr; gap: 48px; }
+    .project-tile-open { opacity: 1; transform: none; }
+    .projects-cta p:not(.eyebrow) { font-size: var(--text-base); }
+    .projects-cta { background-image: linear-gradient(rgb(54 25 15 / 66%), rgb(54 25 15 / 66%)), url('/images/projetos/camila-terralma-62.webp'); background-position: center, 45% center; }
+    .gallery-stage { grid-template-columns: 40px minmax(0, 1fr) 40px; gap: 8px; min-block-size: 80dvh; }
+    .gallery-figure img { max-block-size: 64dvh; }
+    .gallery-figure figcaption { grid-template-columns: 1fr; gap: 6px; }
+    #gallery-counter { grid-row: 2; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .project-tile, .project-tile-image img, .project-tile-open, .project-gallery-dialog, .gallery-figure img, .project-filter::after { transition: none; }
+  }
+}

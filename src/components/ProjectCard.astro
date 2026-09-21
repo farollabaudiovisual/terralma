@@ -1,0 +1,12 @@
+---
+import Icon from './Icon.astro';
+import type { Project } from '../data/projects';
+interface Props { project: Project; }
+const { project } = Astro.props;
+---
+<li class="project-card">
+  <button type="button" class="project-preview" data-project-preview data-image={project.image} data-title={project.name} data-category={project.category} data-alt={project.alt} aria-haspopup="dialog" aria-label={`Ver projeto ${project.name}`}>
+    <span class="project-image"><img src={project.image} alt={project.alt} width="1000" height="750" loading="lazy" decoding="async" /><span class="project-open"><Icon /></span></span>
+    <span class="project-caption"><span class="project-name">{project.name}</span></span>
+  </button>
+</li>

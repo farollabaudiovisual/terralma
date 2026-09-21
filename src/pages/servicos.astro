@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { whatsappUrl } from '../data/site';
+import '../styles/services.css';
+
+const serviceItems = [
+  {
+    number: '01',
+    title: 'Projetos de arquitetura e interiores',
+    summary: 'Projetamos espaços residenciais e comerciais com funcionalidade, identidade e bem-estar.',
+    text: 'Projetamos espaços residenciais e comerciais que unem funcionalidade, identidade e bem-estar. Cada decisão é pensada para que o ambiente funcione na vida real e continue fazendo sentido com o passar do tempo.',
+    image: '/images/servicos-camila-56.jpg',
+    alt: 'Camila analisando uma planta de arquitetura e amostras de materiais',
+    items: ['Estudo de necessidades, rotina e estilo de vida', 'Layout, fluxos e aproveitamento inteligente dos espaços', 'Projeto arquitetônico e de interiores', 'Modelagem 3D para visualizar as escolhas antes da execução', 'Detalhamento de marcenaria, iluminação, revestimentos e acabamentos, com especificação de materiais, mobiliários e elementos que dão unidade ao projeto'],
+  },
+  {
+    number: '02',
+    title: 'Curadoria do lar ideal',
+    summary: 'Um olhar técnico e estratégico para escolher o imóvel certo antes do investimento.',
+    text: 'Antes de comprar, reformar ou construir, ajudamos você a enxergar o potencial do imóvel com mais clareza. É um olhar técnico e estratégico para que a decisão seja feita com segurança e coerência com os seus planos.',
+    image: '/images/brand/camila.webp',
+    alt: 'Camila em um ambiente residencial, observando o espaço e seus detalhes',
+    items: ['Análise técnica do imóvel antes da aquisição', 'Avaliação de potencial de reforma, ampliação ou construção', 'Verificação de compatibilidade com a rotina da família', 'Leitura de implantação, insolação, ventilação e contexto do terreno', 'Orientação para uma decisão consciente antes do investimento'],
+  },
+  {
+    number: '03',
+    title: 'Projetos para prefeitura',
+    summary: 'Aprovação, documentação e acompanhamento técnico para sua obra avançar com tranquilidade.',
+    text: 'Cuidamos da aprovação de projetos na prefeitura e da documentação necessária para que sua obra avance com mais tranquilidade. Organizamos o processo técnico e acompanhamos as exigências para que você tenha clareza em cada etapa.',
+    image: '/assets/real-projects/arquitetura/casa-encontro.webp',
+    alt: 'Detalhe arquitetônico do projeto Casa Encontro',
+    items: ['Projeto conforme a legislação municipal', 'Preparação e organização da documentação técnica', 'Protocolo e acompanhamento junto aos órgãos competentes', 'Atendimento a exigências e ajustes necessários', 'Documentação para execução e regularização do imóvel'],
+  },
+  {
+    number: '04',
+    title: 'Acompanhamento de obra',
+    summary: 'Acompanhamento próximo para preservar na obra a qualidade e a identidade do projeto.',
+    text: 'Um projeto bem executado preserva o que foi pensado no papel. Acompanhamos a obra para alinhar decisões, esclarecer detalhes e garantir que o resultado final mantenha a qualidade, a funcionalidade e a identidade do projeto.',
+    image: '/assets/real-projects/comercial/espaco-terra.webp',
+    alt: 'Espaço comercial finalizado do projeto Espaço Terra',
+    items: ['Planejamento e organização das etapas da obra, com compatibilização dos projetos complementares', 'Visitas técnicas e acompanhamento contínuo', 'Alinhamento com fornecedores e equipe executora', 'Conferência de acabamentos e detalhes do projeto', 'Suporte do início da execução à conclusão da obra'],
+  },
+];
+
+const processSteps = [
+  ['01', 'Imersão', 'Começamos com uma escuta cuidadosa da sua rotina, desejos, necessidades e possibilidades do espaço.'],
+  ['02', 'Fase Terra', 'Organizamos o projeto a partir do lugar: fluxos, implantação, setorização, luz, estrutura e as escolhas que dão base à experiência.'],
+  ['03', 'Fase Alma', 'Definimos materiais, cores, texturas, iluminação e detalhes que traduzem personalidade e criam uma atmosfera verdadeira.'],
+  ['04', 'Projeto Executivo', 'Transformamos as decisões em informações técnicas claras para fornecedores, execução e acompanhamento da obra.'],
+];
+---
+<BaseLayout title="Serviços de Arquitetura e Interiores em Atibaia | Terralma Arquitetura" description="Projetos de arquitetura e interiores, curadoria de imóveis, aprovação na prefeitura e acompanhamento de obra em Atibaia, São Paulo e região. Conheça a Terralma.">
+  <div class="services-page">
+    <section class="services-intro section container" aria-labelledby="services-intro-title"><div class="services-intro-copy"><p class="eyebrow">Como podemos ajudar</p><h1 id="services-intro-title">Soluções para cada momento do seu espaço.</h1></div><p>Do primeiro olhar sobre o espaço até a execução da obra, cada serviço acompanha um momento diferente da sua jornada.</p></section>
+
+    <section class="services-showcase section" aria-label="Serviços da Terralma">
+      <div class="services-fixed-image">
+        <img src={serviceItems[0].image} alt={serviceItems[0].alt} width="1200" height="900" loading="eager" decoding="async" />
+      </div>
+      <div class="services-panels" data-services-accordion role="tablist" aria-orientation="horizontal">
+        {serviceItems.map((service, index) => <article class:list={['service-panel', { 'is-active': index === 0 }]} id={`service-panel-${service.number}`} data-service-panel={index} aria-hidden={index === 0 ? 'false' : 'true'}>
+          <div class="service-panel__closed">
+            <button id={`service-tab-${service.number}`} class="service-tab" type="button" role="tab" aria-controls={`service-content-${service.number}`} aria-expanded={index === 0 ? 'true' : 'false'} data-service-tab={index}><span class="service-tab-number">{service.number}</span><span class="service-tab-title">{service.title}</span><span class="service-tab-plus" aria-hidden="true">+</span></button>
+          </div>
+          <div id={`service-content-${service.number}`} class="service-panel__content" role="tabpanel" aria-labelledby={`service-tab-${service.number}`}>
+            <div class="service-active-copy">
+              <div class="service-heading"><p class="service-number">{service.number}</p><h2 class="service-title">{service.title}</h2><p class="service-subtitle">{service.summary}</p></div>
+              <p class="service-description-seo">{service.text}</p>
+              <ul>{service.items.map(item => <li>{item}</li>)}</ul>
+              {index === 0 ? <Button href="/#projetos" variant="text">Conheça nossos projetos</Button> : <Button href={whatsappUrl} external variant="text">Conversar sobre este serviço</Button>}
+            </div>
+          </div>
+        </article>)}
+      </div>
+    </section>
+
+    <section class="process-section section" aria-labelledby="process-title"><div class="container"><div class="process-intro"><SectionHeading eyebrow="Processo Terralma" title="Um processo construído com clareza." id="process-title" /><p>Cada etapa existe para que as decisões sejam mais conscientes e o projeto avance com segurança, direção e identidade.</p></div><ol class="process-timeline">{processSteps.map(step => <li><span class="process-number">{step[0]}</span><h3>{step[1]}</h3><p>{step[2]}</p></li>)}</ol><Button href={whatsappUrl} external variant="outline" icon="arrow-up-right" class="header-cta process-cta">Quero conversar sobre meu projeto</Button></div></section>
+
+    <section class="services-work section" aria-labelledby="services-work-title">
+      <div class="container services-work-layout">
+        <div class="services-work-heading">
+          <p class="eyebrow">ACOMPANHAMENTO DE OBRA</p>
+          <h2 id="services-work-title">Do projeto à obra,<br />seguimos por perto.</h2>
+        </div>
+        <figure class="services-work-image">
+          <img src="/images/servicos/area-social-projeto-terralma.webp" alt="Área social integrada com mesa de jantar, sofá e cozinha" width="1763" height="892" loading="lazy" decoding="async" />
+        </figure>
+        <ol class="services-work-steps">
+          <li><span class="services-work-number" aria-hidden="true">01</span><div><h3>PRÉ-OBRA</h3><p>Antes da execução, analisamos orçamentos e organizamos o investimento necessário para a obra.</p></div></li>
+          <li><span class="services-work-number" aria-hidden="true">02</span><div><h3>PLANEJAMENTO</h3><p>Definimos o cronograma e coordenamos as contratações para que cada etapa aconteça no momento certo.</p></div></li>
+          <li><span class="services-work-number" aria-hidden="true">03</span><div><h3>EXECUÇÃO</h3><p>Acompanhamos a obra com visitas técnicas, controle de custos e suporte às decisões, preservando a fidelidade ao projeto.</p></div></li>
+        </ol>
+        <Button href={whatsappUrl} external variant="outline" icon="arrow-up-right" class="header-cta services-work-cta">Quero começar meu projeto</Button>
+      </div>
+    </section>
+
+    <section class="services-final-cta" aria-labelledby="services-final-title"><div class="services-final-image"><img src="/images/servicos/camila-terralma-97.webp" alt="Camila medindo uma bancada, com a marca Terralma ao fundo" width="1200" height="1800" loading="lazy" decoding="async" /></div><div class="services-final-copy"><p class="eyebrow">Vamos dar o primeiro passo?</p><h2 id="services-final-title">Seu espaço pode começar com uma boa conversa.</h2><p>Conte um pouco sobre o que você imagina. Vamos entender juntos qual serviço faz mais sentido para o seu momento.</p><Button href={whatsappUrl} external variant="outline" icon="arrow-up-right" class="header-cta">Iniciar um projeto</Button></div></section>
+  </div>
+</BaseLayout>
+<script>import '../scripts/services';</script>

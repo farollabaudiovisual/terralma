@@ -1,0 +1,74 @@
+[
+  {
+    "name": "hero",
+    "source": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/hero.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  },
+  {
+    "name": "architecture-01",
+    "source": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/architecture-01.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  },
+  {
+    "name": "architecture-02",
+    "source": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/architecture-02.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  },
+  {
+    "name": "architecture-03",
+    "source": "https://images.unsplash.com/photo-1600047509782-20d39509f26d?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/architecture-03.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  },
+  {
+    "name": "interiors-01",
+    "source": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/interiors-01.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  },
+  {
+    "name": "interiors-02",
+    "source": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/interiors-02.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  },
+  {
+    "name": "interiors-03",
+    "source": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/interiors-03.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  },
+  {
+    "name": "commercial-01",
+    "source": "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/commercial-01.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  },
+  {
+    "name": "commercial-02",
+    "source": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/commercial-02.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  },
+  {
+    "name": "commercial-03",
+    "source": "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/commercial-03.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  },
+  {
+    "name": "biophilia",
+    "source": "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/biophilia.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  },
+  {
+    "name": "material",
+    "source": "https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=1920&q=85",
+    "output": "public/images/placeholders/material.webp",
+    "status": "Referência visual; não é projeto da Terralma."
+  }
+]

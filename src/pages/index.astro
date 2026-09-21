@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectRail from '../components/ProjectRail.astro';
+import { projectGroups } from '../data/projects';
+import { whatsappUrl } from '../data/site';
+---
+<BaseLayout>
+  <script is:inline>document.documentElement.classList.add('home-motion-ready');</script>
+  <section class="hero home-entry" aria-labelledby="hero-title">
+    <picture class="hero-photo"><source media="(max-width: 639px)" srcset="/images/brand/camila-hero-mobile.webp" width="800" height="1100" /><img src="/images/brand/camila-hero.webp" alt="Ambiente Terralma com vegetação, luz natural e Camila em movimento" width="1920" height="1280" fetchpriority="high" /></picture>
+    <div class="container hero-content"><h1 id="hero-title">arquitetura<br />que se sente</h1><Button href="/a-terralma" variant="light" class="hero-cta" arrow={false}>Conheça a Terralma</Button></div>
+    <div class="container hero-bottom"><span>Atibaia, São Paulo e região</span></div>
+  </section>
+
+  <section id="manifesto" class="manifesto section" aria-labelledby="manifesto-title">
+    <div class="container manifesto-grid"><div class="manifesto-signature"><img src="/logo/symbol-light.webp" alt="" width="100" height="100" loading="lazy" /><p class="eyebrow">Terra + Alma</p></div><div><h2 id="manifesto-title">A matéria dá forma.<br />A vida dá sentido.</h2><p>Projetamos espaços que acolhem, funcionam e têm identidade. Onde a natureza encontra o cotidiano e cada escolha faz sentido para quem vive ali.</p></div><span class="manifesto-note">Feito de escuta.<br />Pensado para sentir.</span></div>
+  </section>
+
+  <section id="projetos" class="projects section container" aria-labelledby="projects-title">
+    <div class="projects-intro"><SectionHeading eyebrow="Um olhar sobre o habitar" title="Nossos projetos" id="projects-title" /><p>Formas de viver, trabalhar e estar.<br />Um olhar atento a cada espaço.</p></div>
+    <p class="reference-note">Projetos reais da Terralma · capas otimizadas para esta Home.</p>
+    {projectGroups.map(group => <ProjectRail {...group} />)}
+  </section>
+
+  <section id="contato" class="contact-section" aria-labelledby="contact-title">
+    <div class="container contact-grid"><div class="contact-image"><img src="/images/servicos/camila-50.jpg" alt="Camila segurando amostras de materiais" width="1365" height="2048" loading="lazy" decoding="async" /></div><div class="contact-copy"><p class="eyebrow">O próximo capítulo é seu</p><h2 id="contact-title">Vamos dar o<br />primeiro passo?</h2><p>Conte sobre o lugar que você imagina.<br />Vamos descobrir o que ele pode ser.</p>{whatsappUrl ? <Button href={whatsappUrl} external variant="light" icon="arrow-up-right" class="header-cta">Iniciar um projeto</Button> : <Button dialog="contact-demo" variant="light" icon="arrow-up-right" class="header-cta">Iniciar um projeto</Button>}<span class="contact-location">Atibaia, São Paulo e região</span></div></div>
+  </section>
+  <script>
+    const homeEntry = document.querySelector<HTMLElement>('.home-entry');
+    const revealHome = async () => {
+      if (!homeEntry) return;
+      await document.fonts.ready;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => homeEntry.classList.add('is-visible'));
+      });
+    };
+    void revealHome();
+  </script>
+</BaseLayout>

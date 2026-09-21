@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { whatsappUrl } from '../data/site';
+import '../styles/about.css';
+---
+<BaseLayout title="Sobre a Terralma Arquitetura | Arquitetura e Interiores em Atibaia" description="Conheça a Terralma Arquitetura, escritório de arquitetura e interiores em Atibaia, São Paulo e região. Projetos autorais, funcionais e conectados à natureza.">
+  <div class="about-page">
+    <section id="terra-alma" class="terra-alma-opening" aria-labelledby="terra-alma-title">
+      <div class="container terra-alma-opening-inner">
+        <div class="terra-alma-composition">
+          <article class="terra-alma-concept terra-concept">
+            <h1 id="terra-alma-title" class="terra-alma-word" data-pointer-blur>
+              <span class="terra-alma-word-base">terra</span>
+              <span class="terra-alma-word-blur" aria-hidden="true">terra</span>
+            </h1>
+            <div class="terra-alma-definition">
+              <p class="terra-alma-subtitle">Matéria, origem, permanência.</p>
+              <p class="terra-alma-summary">O lugar onde a arquitetura cria raízes.</p>
+            </div>
+          </article>
+          <article class="terra-alma-concept alma-concept">
+            <h2 class="terra-alma-word" data-pointer-blur>
+              <span class="terra-alma-word-base">alma</span>
+              <span class="terra-alma-word-blur" aria-hidden="true">alma</span>
+            </h2>
+            <div class="terra-alma-definition">
+              <p class="terra-alma-subtitle">Sensibilidade, memória, pertencimento.</p>
+              <p class="terra-alma-summary">Aquilo que transforma um espaço em experiência.</p>
+            </div>
+          </article>
+        </div>
+        <p class="terra-alma-manifesto">Quando <strong class="terra-alma-emphasis">terra</strong> e <strong class="terra-alma-emphasis">alma</strong> se encontram, nasce uma arquitetura conectada<br class="terra-alma-manifesto-break" /> ao lugar e às pessoas que o habitam.</p>
+      </div>
+    </section>
+
+    <section id="a-terralma" class="about-profile section" aria-labelledby="about-title">
+      <div class="container about-profile-grid">
+        <figure class="about-photo about-photo-fan">
+          <div class="about-photo-stack">
+            <img class="about-photo-image about-photo-image-back-left" src="/images/a-terralma/camila-10.jpg" alt="Camila sorrindo sentada diante de uma janela" width="1365" height="2048" loading="lazy" decoding="async" />
+            <img class="about-photo-image about-photo-image-back-right" src="/images/a-terralma/camila-13.jpg" alt="Camila apresentando materiais e uma planta de arquitetura" width="1365" height="2048" loading="lazy" decoding="async" />
+            <img class="about-photo-image about-photo-image-main" src="/images/a-terralma/camila-40.jpg" alt="Camila Borges sorrindo enquanto trabalha em um ambiente com plantas" width="1365" height="2048" loading="lazy" decoding="async" />
+          </div>
+        </figure>
+        <div class="about-profile-copy">
+          <SectionHeading eyebrow="Quem está à frente" title="Camila Borges" id="about-title" />
+          <p class="about-profile-subtitle">Arquiteta, urbanista e fundadora da Terralma.</p>
+          <div class="about-profile-text">
+            <p>Formada pela Universidade Presbiteriana Mackenzie, Camila desenvolveu um olhar que une conhecimento técnico, sensibilidade e os princípios da arquitetura biofílica.</p>
+            <p>Sua forma de projetar começa pela escuta. Antes de pensar em formas, materiais ou soluções, ela busca compreender as histórias, as necessidades e a maneira de viver de cada pessoa.</p>
+            <p>É desse encontro entre pessoas, natureza e espaço que surgem projetos conduzidos com proximidade, clareza e cuidado, da primeira conversa à execução da obra.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nosso-olhar" class="biophilia" aria-labelledby="biophilia-title">
+      <img class="biophilia-photo" src="/images/a-terralma/terralma-editorial-sem-recorte.png" alt="Casa térrea integrada ao jardim, à piscina e a uma área de descanso ao ar livre" width="1760" height="896" loading="lazy" decoding="async" />
+      <div class="container"><div class="biophilia-copy"><p class="eyebrow">NOSSA BASE: BIOFILIA</p><h2 id="biophilia-title">Biofilia vai além de trazer<br />o verde para dentro de casa.</h2><div class="biophilia-text"><p>Está na luz natural, na ventilação, nos materiais e na forma como a arquitetura se relaciona com o entorno.</p><p>Na Terralma, esse olhar faz parte do projeto desde o início.</p></div></div></div>
+    </section>
+
+    <section id="contato" class="about-final-cta section" aria-labelledby="about-final-title">
+      <div class="container about-final-content"><p class="eyebrow">Um convite para viver</p><h2 id="about-final-title">Espaços com identidade.<br />Arquitetura com alma.</h2><Button href="/servicos" variant="outline" icon="arrow-up-right" class="header-cta">Conheça nossos serviços</Button></div>
+    </section>
+  </div>
+</BaseLayout>
+<script>import '../scripts/about';</script>

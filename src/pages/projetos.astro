@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import ProjectGalleryModal from '../components/ProjectGalleryModal.astro';
+import { projectGroups } from '../data/projects';
+import '../styles/projects.css';
+
+const projects = projectGroups.flatMap(group => group.projects);
+const filters = [
+  { label: 'Todos', value: 'todos' },
+  { label: 'Arquitetura', value: 'arquitetura' },
+  { label: 'Interiores', value: 'interiores' },
+  { label: 'Comercial', value: 'comercial' },
+];
+---
+<BaseLayout title="Projetos de Arquitetura e Interiores em Atibaia | Terralma" description="Conheça projetos de arquitetura residencial, interiores e espaços comerciais da Terralma em Atibaia, São Paulo e região.">
+  <div class="projects-page">
+    <section class="projects-hero section" aria-labelledby="projects-page-title">
+      <div class="container projects-hero-content">
+        <p class="eyebrow">Portfólio</p>
+        <h1 id="projects-page-title">Projetos de arquitetura e interiores pensados para a vida real.</h1>
+        <p>Cada projeto nasce de uma escuta atenta dos hábitos, da rotina, da luz e da forma particular de cada pessoa viver. Aqui, arquitetura, interiores e natureza se encontram para criar espaços com identidade.</p>
+      </div>
+    </section>
+
+    <section class="projects-index container" aria-labelledby="projects-index-title">
+      <div class="projects-index-heading"><p class="eyebrow">Um olhar sobre o habitar</p><h2 id="projects-index-title">Projetos que acompanham a vida.</h2></div>
+      <nav class="project-filters" aria-label="Filtrar projetos">{filters.map((filter, index) => <button type="button" class:list={['project-filter', { 'is-active': index === 0 }]} data-filter={filter.value} aria-pressed={index === 0 ? 'true' : 'false'}>{filter.label}</button>)}</nav>
+      <div class="projects-grid" data-project-grid>
+        {projects.map((project, index) => <article class="project-tile" data-project-card data-project-slug={project.id} data-project-category={project.category.toLowerCase()} data-project-gallery={JSON.stringify(project.gallery)}>
+          <button class="project-tile-trigger" type="button" data-project-title={project.name} data-project-category={project.category} aria-label={`Abrir galeria do projeto ${project.name}`}>
+            <span class="project-tile-image"><img src={project.image} alt={project.alt} width="1200" height="900" loading={index < 3 ? 'eager' : 'lazy'} decoding="async" /><span class="project-tile-open"><span>Ver projeto</span><Icon /></span></span>
+            <span class="project-tile-caption"><span class="project-tile-category">{project.category}</span><span class="project-tile-name">{project.name}</span></span>
+          </button>
+        </article>)}
+      </div>
+    </section>
+
+    <section id="contato" class="projects-cta section" aria-labelledby="projects-cta-title">
+      <div class="container projects-cta-content"><p class="eyebrow">Seu espaço pode ser o próximo</p><h2 id="projects-cta-title">Vamos transformar o seu jeito de viver em espaço?</h2><p>Conte em que momento você está. A primeira conversa nos ajuda a entender seus desejos, necessidades e o caminho mais adequado para o seu projeto.</p><Button href="https://wa.me/5511988217611?text=Vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." external variant="outline" icon="arrow-up-right" class="header-cta">começar meu projeto</Button></div>
+    </section>
+  </div>
+  <ProjectGalleryModal />
+  <script>import '../scripts/projects';</script>
+</BaseLayout>

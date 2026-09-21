@@ -1,0 +1,7 @@
+---
+interface Props { light?: boolean; }
+const { light = false } = Astro.props;
+---
+<a class:list={['brand', { 'brand-light': light }]} href="#inicio" aria-label="Terralma — início">
+  <img src="/logo/terralma.webp" alt="Terralma — arquitetura e design de interiores" width="640" height="454" fetchpriority="low" />
+</a>

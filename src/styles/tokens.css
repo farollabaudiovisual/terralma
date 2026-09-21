@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Poiret One';
+  src: url('/fonts/PoiretOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Questrial';
+  src: url('/fonts/Questrial-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --color-brand: #76351a;
+  --color-paper: #f2e8de;
+  --color-accent: #9b5438;
+  --color-ink: #2b1a12;
+  --color-line: rgb(118 53 26 / 24%);
+  --font-display: 'Poiret One', 'Trebuchet MS', sans-serif;
+  --font-body: 'Questrial', Arial, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem);
+  --text-xl: clamp(1.5rem, 1.25rem + 0.65vw, 2rem);
+  --text-2xl: clamp(2.25rem, 1.4rem + 2.4vw, 4.25rem);
+  --text-display: clamp(3.5rem, 2rem + 4.2vw, 6.5rem);
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+  --space-8: 8rem;
+  --section-space: clamp(4.5rem, 7.5vw, 8rem);
+  --container-max: 1440px;
+  --gutter: 18px;
+  --radius: 16px;
+  --motion: 220ms;
+  --motion-long: 500ms;
+  /* Layout breakpoints: tablet 640px; full navigation 1024px. */
+}
+@media (min-width: 640px) {
+  :root { --gutter: 24px; }
+}
+@media (min-width: 1024px) {
+  :root { --gutter: 48px; --radius: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion: 0s; --motion-long: 0s; }
+}

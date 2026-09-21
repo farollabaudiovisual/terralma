@@ -1,0 +1,11 @@
+---
+import Icon from './Icon.astro';
+---
+<dialog id="project-gallery" class="project-gallery-dialog" aria-labelledby="gallery-title" aria-describedby="gallery-meta">
+  <form method="dialog" class="gallery-close"><button class="icon-button" aria-label="Fechar galeria"><Icon name="close" /></button></form>
+  <div class="gallery-stage">
+    <button class="gallery-nav gallery-previous" type="button" aria-label="Imagem anterior"><Icon /></button>
+    <figure class="gallery-figure"><img id="gallery-image" src="" alt="" width="1800" height="1200" /><figcaption id="gallery-meta"><span id="gallery-category"></span><h2 id="gallery-title"></h2><span id="gallery-counter"></span></figcaption></figure>
+    <button class="gallery-nav gallery-next" type="button" aria-label="Próxima imagem"><Icon /></button>
+  </div>
+</dialog>

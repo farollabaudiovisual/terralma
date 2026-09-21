@@ -1,0 +1,16 @@
+---
+import { instagramUrl, tiktokUrl, whatsappUrl } from '../data/site';
+interface Props { class?: string; }
+const { class: className } = Astro.props;
+---
+<nav class:list={['social-links', className]} aria-label="Redes sociais e WhatsApp">
+  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (abre nova aba)">
+    <img src="/icons/whatsapp.svg" alt="" width="20" height="20" />
+  </a>
+  <a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram (abre nova aba)">
+    <img src="/icons/instagram.svg" alt="" width="20" height="20" />
+  </a>
+  <a href={tiktokUrl} target="_blank" rel="noopener noreferrer" aria-label="TikTok (abre nova aba)">
+    <img src="/icons/tiktok.svg" alt="" width="20" height="20" />
+  </a>
+</nav>
