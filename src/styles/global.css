@@ -1,5 +1,4 @@
 @import './tokens.css';
-@layer base, components, home;
 
 @layer base {
   :where(*, *::before, *::after) { box-sizing: border-box; }
