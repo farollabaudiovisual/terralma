@@ -18,6 +18,7 @@ let gallery: GalleryImage[] = [];
 let galleryIndex = 0;
 let touchStartX: number | null = null;
 let filterTimer = 0;
+let gallerySwapId = 0;
 
 const updateUrl = (slug?: string) => {
   const url = new URL(window.location.href);
@@ -26,35 +27,78 @@ const updateUrl = (slug?: string) => {
   window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
 };
 
-const renderGalleryImage = () => {
+const preloadGalleryImage = (src: string) => new Promise<void>(resolve => {
+  const image = new Image();
+  const finish = () => resolve();
+  image.addEventListener('load', finish, { once: true });
+  image.addEventListener('error', finish, { once: true });
+  image.src = src;
+  if (image.complete) finish();
+});
+
+const waitForImageFade = (image: HTMLImageElement) => new Promise<void>(resolve => {
+  let timeout = 0;
+  const finish = () => {
+    window.clearTimeout(timeout);
+    image.removeEventListener('transitionend', onTransitionEnd);
+    resolve();
+  };
+  const onTransitionEnd = (event: TransitionEvent) => {
+    if (event.target === image && event.propertyName === 'opacity') finish();
+  };
+  image.addEventListener('transitionend', onTransitionEnd);
+  timeout = window.setTimeout(finish, 300);
+});
+
+const renderGalleryImage = async (animate = true): Promise<boolean> => {
   const current = gallery[galleryIndex];
-  if (!current || !galleryImage || !galleryTitle || !galleryCategory || !galleryCounter) return;
+  if (!current || !galleryImage || !galleryTitle || !galleryCategory || !galleryCounter) return false;
+  const swapId = ++gallerySwapId;
   const update = () => {
     galleryImage.src = current.src;
     galleryImage.alt = current.alt;
     galleryCounter.textContent = `${String(galleryIndex + 1).padStart(2, '0')} / ${String(gallery.length).padStart(2, '0')}`;
     galleryImage.classList.remove('is-changing');
   };
-  galleryImage.classList.add('is-changing');
   galleryTitle.textContent = activeTrigger?.dataset.projectTitle || '';
   galleryCategory.textContent = activeTrigger?.dataset.projectCategory || '';
-  if (reducedMotion.matches) update();
-  else window.setTimeout(update, 140);
+  galleryCounter.textContent = `${String(galleryIndex + 1).padStart(2, '0')} / ${String(gallery.length).padStart(2, '0')}`;
+  if (!animate || reducedMotion.matches) {
+    if (!reducedMotion.matches) await preloadGalleryImage(current.src);
+    if (swapId !== gallerySwapId) return false;
+    update();
+    return true;
+  }
+
+  galleryImage.classList.remove('is-changing');
+  await preloadGalleryImage(current.src);
+  if (swapId !== gallerySwapId) return false;
+
+  galleryImage.classList.add('is-changing');
+  await waitForImageFade(galleryImage);
+  if (swapId !== gallerySwapId) return false;
+
+  galleryImage.src = current.src;
+  galleryImage.alt = current.alt;
+  try { await galleryImage.decode(); } catch { /* The preloaded image can still render normally. */ }
+  if (swapId !== gallerySwapId) return false;
+  galleryImage.classList.remove('is-changing');
+  return true;
 };
 
 const moveGallery = (direction: number) => {
   if (!gallery.length) return;
   galleryIndex = (galleryIndex + direction + gallery.length) % gallery.length;
-  renderGalleryImage();
+  void renderGalleryImage();
 };
 
-const openGallery = (card: HTMLElement) => {
+const openGallery = async (card: HTMLElement) => {
   if (!dialog) return;
   try { gallery = JSON.parse(card.dataset.projectGallery || '[]') as GalleryImage[]; } catch { gallery = []; }
   if (!gallery.length) return;
   activeTrigger = card.querySelector<HTMLElement>('.project-tile-trigger');
   galleryIndex = 0;
-  renderGalleryImage();
+  if (!await renderGalleryImage(false)) return;
   updateUrl(card.dataset.projectSlug);
   if (!dialog.open) dialog.showModal();
 };
@@ -80,7 +124,7 @@ filters.forEach(filter => filter.addEventListener('click', () => {
   applyFilter(filter.dataset.filter || 'todos');
 }));
 
-cards.forEach(card => card.querySelector<HTMLButtonElement>('.project-tile-trigger')?.addEventListener('click', () => openGallery(card)));
+cards.forEach(card => card.querySelector<HTMLButtonElement>('.project-tile-trigger')?.addEventListener('click', () => void openGallery(card)));
 previous?.addEventListener('click', () => moveGallery(-1));
 next?.addEventListener('click', () => moveGallery(1));
 
@@ -108,6 +152,6 @@ if (initialSlug) {
   if (card) {
     const category = card.dataset.projectCategory || 'todos';
     filters.find(item => item.dataset.filter === category)?.click();
-    openGallery(card);
+    void openGallery(card);
   }
 }
