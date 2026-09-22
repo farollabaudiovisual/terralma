@@ -1,4 +1,5 @@
 interface GalleryImage { src: string; alt: string; }
+interface ScrollPosition { x: number; y: number; }
 
 const grid = document.querySelector<HTMLElement>('[data-project-grid]');
 const cards = [...document.querySelectorAll<HTMLElement>('[data-project-card]')];
@@ -19,12 +20,28 @@ let galleryIndex = 0;
 let touchStartX: number | null = null;
 let filterTimer = 0;
 let gallerySwapId = 0;
+let galleryScrollPosition: ScrollPosition | null = null;
 
 const updateUrl = (slug?: string) => {
   const url = new URL(window.location.href);
   if (slug) url.searchParams.set('projeto', slug);
   else url.searchParams.delete('projeto');
   window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
+};
+
+const saveGalleryScrollPosition = () => {
+  galleryScrollPosition = { x: window.scrollX, y: window.scrollY };
+};
+
+const restoreGalleryScrollPosition = () => {
+  const savedPosition = galleryScrollPosition;
+  galleryScrollPosition = null;
+  if (!savedPosition) return;
+
+  requestAnimationFrame(() => {
+    activeTrigger?.focus({ preventScroll: true });
+    window.scrollTo({ left: savedPosition.x, top: savedPosition.y, behavior: 'instant' });
+  });
 };
 
 const preloadGalleryImage = (src: string) => new Promise<void>(resolve => {
@@ -100,7 +117,10 @@ const openGallery = async (card: HTMLElement) => {
   galleryIndex = 0;
   if (!await renderGalleryImage(false)) return;
   updateUrl(card.dataset.projectSlug);
-  if (!dialog.open) dialog.showModal();
+  if (!dialog.open) {
+    saveGalleryScrollPosition();
+    dialog.showModal();
+  }
 };
 
 const applyFilter = (value: string) => {
@@ -134,7 +154,7 @@ dialog?.addEventListener('keydown', event => {
 });
 dialog?.addEventListener('close', () => {
   updateUrl();
-  activeTrigger?.focus();
+  restoreGalleryScrollPosition();
 });
 
 figure?.addEventListener('pointerdown', event => { touchStartX = event.clientX; });
